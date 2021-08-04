@@ -13,9 +13,7 @@ local ResetTime = KeystoneDB['Resetdate']; --Get epoch timestamp for saved reset
 local CurrentServerTime = GetServerTime(); --Get current epoch time
 local TimeToNextReset = GetQuestResetTime() + GetServerTime(); --Get epoch timestamp for next reset
 
-if ResetTime == TimeToNextReset then --Check if saved timestamp is same same as current
-	
-else
+if ResetTime ~= TimeToNextReset then --Check if saved timestamp is same same as current
 	KeystoneDB = {}; --Else reset the saved data
 	KeystoneDB["Resetdate"] = TimeToNextReset; --Save epoch timestamp for next reset
 end
@@ -23,13 +21,14 @@ end
 function saveKey()
 
 	--implement check if nil then end
-	local KeystoneLevel = C_MythicPlus.GetOwnedKeystoneLevel();
-	local Keystone = C_ChallengeMode.GetMapUIInfo(C_MythicPlus.GetOwnedKeystoneChallengeMapID());
-	local PlayerName = UnitName("player");
-
-	--Save data to SavedVariables
-	KeystoneDB[PlayerName] = {};
-	KeystoneDB[PlayerName].Keystone = Keystone;
-	KeystoneDB[PlayerName].KeystoneLevel = KeystoneLevel;
-
+	if C_MythicPlus.GetOwnedKeystoneLevel() ~= nil then
+		local KeystoneLevel = C_MythicPlus.GetOwnedKeystoneLevel();
+		local Keystone = C_ChallengeMode.GetMapUIInfo(C_MythicPlus.GetOwnedKeystoneChallengeMapID());
+		local PlayerName = UnitName("player");
+	
+		--Save data to SavedVariables
+		KeystoneDB[PlayerName] = {};
+		KeystoneDB[PlayerName].Keystone = Keystone;
+		KeystoneDB[PlayerName].KeystoneLevel = KeystoneLevel;
+	end
 end
