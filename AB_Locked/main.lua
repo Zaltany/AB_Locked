@@ -27,8 +27,10 @@ function saveKey()
 		local PlayerName = UnitName("player");
 	
 		--Save data to SavedVariables
-		KeystoneDB[PlayerName] = {};
-		KeystoneDB[PlayerName].Keystone = Keystone;
-		KeystoneDB[PlayerName].KeystoneLevel = KeystoneLevel;
+		KeystoneDB["Characters"] = KeystoneDB['Characters'] or {};
+		local playerInfo = {};
+		playerInfo.Keystone = Keystone;
+		playerInfo.KeystoneLevel = KeystoneLevel;
+		KeystoneDB["Characters"][PlayerName] = playerInfo;
 	end
 end
