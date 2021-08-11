@@ -1,7 +1,7 @@
 ## Interface: 90100
 ## Title: AB LOCKED
-## Author: Zalt
-## Version: 0.1
+## Author: Zaltany-TwistingNether
+## Version: 0.2
 ## SavedVariables: KeystoneDB
 
 main.lua
